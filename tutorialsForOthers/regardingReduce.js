@@ -58,3 +58,24 @@ const reduceBehaveLikeFilter = (myArray) =>
 
 console.log( 'act like filter:', reduceBehaveLikeFilter(arr) )
 
+const complexDefault = {keys: [],values: []}
+const moreComplexDefault = (myArray) =>
+  myArray.reduce( (accum, value, index) =>
+    {
+      return accum
+    },
+    complexDefault
+  )
+
+console.log( 'complex default:', moreComplexDefault(arr))
+
+const explicitComplexDefault = (myArray) =>
+  myArray.reduce( (accum, value, index) =>
+    {
+      return accum
+    },
+    {keys: [],values: []}
+  )
+
+
+console.log( 'explicit complex default:', moreComplexDefault(arr))
