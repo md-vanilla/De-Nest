@@ -1,37 +1,36 @@
 // Variable Declerations
 var arr = [7, 1, 2, 3, 4];
 
-var obj = { 
-  a: {value:7}, 
-  b: {value:2}, 
-  c: {value:3} 
-};
+var obj = { a: 7, b: 2, c: {value:3} };
 
-function reduceArray (arr) {
-  return arr.reduce( (pV, cV, cI) => 
-    { return arrayKeyValue(pV, cV, cI); }, 
+function reduceArray (arr) { // previous Value, currentValue, currentIndex
+  return arr.reduce( (pV, cV, cI) =>
+    { return pushKeyAndValue(pV, { key: cI, value: cV }, arrKey); },
     {keys:[], values:[]}
   );
 }
 
-function reduceObject (obj) {
-  return Object.keys(obj).reduce( (pV, cV, cI) => 
-    { return objectKeyValue(pV, obj, cV); }, 
+function reduceObject (obj) { // previous Value, currentValue, currentIndex
+  return Object.keys(obj).reduce( (pV, cV, cI) =>
+    { return pushKeyAndValue(pV, { key: cV, value: obj[cV] }, objKey ); },
     { keys:[], values:[] }
   );
 }
 
-function arrayKeyValue(pV, cV, cI) {
-  pV.keys.push(`[${cI}]`); // intentionally insert '[]' for string flattening keys
-  pV.values.push(cV);
+// spec pV =  { keys:[], values:[] }
+function pushKeyAndValue(pV, {key, value}, keyCallback) {
+  pV.keys.push(keyCallback(key)) // intentionally insert '.' for string flattening keys.
+  pV.values.push(value)
   return pV // *********  Important ******
 }
 
-function objectKeyValue(pV, o, cV) {
-  pV.keys.push('.'+cV) // intentionally insert '.' for string flattening keys.
-  pV.values.push(o[cV].value)
-  return pV // *********  Important ******
+function objKey(key){
+  return '.'+key
 }
+function arrKey(key){
+  return `[${key}]`
+}
+
 
 // Output interface.
 console.log('inputs')
