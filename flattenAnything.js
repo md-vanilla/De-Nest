@@ -18,7 +18,7 @@ function reduceObject (obj) { // previous Value, currentValue, currentIndex
 }
 
 // spec pV =  { keys:[], values:[] }
-function pushKeyAndValue(pV, {key, value}, keyCallback) {
+function updatePv(pV, {key, value}, keyCallback) {
   pV.keys.push(keyCallback(key)) // intentionally insert '.' for string flattening keys.
   pV.values.push(value)
   return pV // *********  Important ******
