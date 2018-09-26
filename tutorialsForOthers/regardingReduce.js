@@ -19,7 +19,7 @@ const sumArray = (myArray) =>
   myArray.reduce( (accum, value, index) =>
     { return accum+=value }
   )
-console.log( sumArray(arr) )
+console.log( 'sum first', sumArray(arr) )
 
 const defaultInteger = 0;
 const sumArrayDefaultIntegerDeclared = (myArray) =>
@@ -29,8 +29,9 @@ const sumArrayDefaultIntegerDeclared = (myArray) =>
     },
     defaultInteger // 0
   )
-console.log( sumArrayDefaultIntegerDeclared(arr) )
+console.log( 'sum second', sumArrayDefaultIntegerDeclared(arr) )
 
+console.log({arr})
 const defaultArray = [];
 const reduceBehaveLikeMap = (myArray) =>
   myArray.reduce( (accum, value, index) =>
@@ -41,6 +42,19 @@ const reduceBehaveLikeMap = (myArray) =>
     defaultArray // []
   )
 
-console.log( reduceBehaveLikeMap(arr) )
+console.log( 'act like map:', reduceBehaveLikeMap(arr) )
 
+const conditionForExample = (value) => value > 6
+const reduceBehaveLikeFilter = (myArray) =>
+  myArray.reduce( (accum, value, index) =>
+    {
+      if(conditionForExample(value)) {
+        accum.push(value)
+      }
+      return accum
+    },
+    []
+  )
+
+console.log( 'act like filter:', reduceBehaveLikeFilter(arr) )
 
