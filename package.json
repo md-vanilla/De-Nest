@@ -4,7 +4,7 @@
   "description": "nest with objects; nest with arrays; deeply nest; we dont care! 😘 ",
   "main": "flattenAnything.js",
   "scripts": {
-    "example": "echo ;echo '*********tutorials started************'; for d in ./tutorialsForOthers/* ; do (echo && echo `$d` && node $d); done;echo ; echo '************  flattenAnything Started ***********'; node flattenAnything.js;",
+    "example": "echo ;echo '*********tutorials started************'; for d in ./tutorialsForOthers/* ; do (echo && echo `$d` && node $d); done;echo ; echo '************  flattenAnything Started ***********'; node de_nest.js;",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
