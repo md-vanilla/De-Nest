@@ -12,19 +12,11 @@ function handleNested(val, oldKey){
       : val
     )
 }
-
-function oldKeyBuildArray({oldKey, key}){
-  return `${oldKey}[${key}]`
-}
-function arrKeyCallback(key){
-  return `[${key}]`
-}
-function oldKeyBuildObject({oldKey, key}){
-  return `${oldKey}.${key}`
-}
-function objKeyCallback(key){
-  return `.${key}`
-}
+// unused key definitions instead of using explicit values.
+const oldKeyBuildArray  = ({oldKey, key}) => `${oldKey}[${key}]`
+const arrKeyCallback    = (key)           => `[${key}]`
+const oldKeyBuildObject = ({oldKey, key}) => `${oldKey}.${key}`
+const objKeyCallback    = (key)           => `.${key}`
 
 function reduceArray (arr, oldKey) { // previous Value, currentValue, currentIndex
   let newKeysAndValues = arr.reduce( (pV, cV, cI) =>
