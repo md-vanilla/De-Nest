@@ -22,8 +22,7 @@ function reduceArray (arr, oldKey) { // previous Value, currentValue, currentInd
   let newKeysAndValues = arr.reduce( (pV, cV, cI) =>
     {
       let key = cI; let value = cV;
-      pV = commonReduceLogic({key, oldKey, value, pV}, `${oldKey}[${key}]`, `[${key}]`)
-      return pV
+      return commonReduceLogic({key, oldKey, value, pV}, `${oldKey}[${key}]`, `[${key}]`)
     },
     {} // {keys:[],values:[]}
   );
@@ -34,13 +33,13 @@ function reduceObject (obj, oldKey) { // previous Value, currentValue, currentIn
   let newKeysAndValues = Object.keys(obj).reduce( (pV, cV, cI) =>
     {
       let key = cV; let value = obj[cV]
-      pV = commonReduceLogic({key, oldKey, value, pV}, `${oldKey}.${key}`, `.${key}`)
-      return pV
+      return commonReduceLogic({key, oldKey, value, pV}, `${oldKey}.${key}`, `.${key}`)
     },
     {} // {keys:[],values:[]}
   );
   return newKeysAndValues
 }
+
 function commonReduceLogic({key, oldKey, value, pV}, currFullKey, currKey){
   if (typeof value === 'object') {
     resultsObject = handleNested(value, currFullKey)
@@ -52,19 +51,19 @@ function commonReduceLogic({key, oldKey, value, pV}, currFullKey, currKey){
   }
   return pV
 }
+
 function updatePv(pV, {key, value}, currKey, oldKey) {
   pV[`${oldKey}${currKey}`] = value
+  return pV // *********  Important ******
+  // old implementation:
   // pV.keys.push(oldKey + keyCallback(key)) // intentionally insert '.' for string flattening keys.
   // pV.values.push(value)
-  return pV // *********  Important ******
 }
-
 
 function ecma2018ArrMerge(resultsObject, pV){
   // for alternatives check, https://stackoverflow.com/a/171256
   return {...pV, ...resultsObject}
 }
-
 
 // Output interface.
 console.log('inputs')
