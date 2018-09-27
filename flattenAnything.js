@@ -27,13 +27,17 @@ function handleNested(val, oldKey){
 function oldKeyBuildArray({oldKey, key}){
   return `${oldKey}[${key}]`
 }
+function oldKeyBuildObject({oldKey, key}){
+  return `${oldKey}.${key}`
+}
 
 function reduceArray (arr, oldKey) { // previous Value, currentValue, currentIndex
+  console.log('arrrrrrrrray reached')
   let newKeysAndValues = arr.reduce( (pV, cV, cI) =>
     {
       let key = cI
       let value = cV
-      pV = commonMap({key, oldKey, value, pV})
+      pV = commonMap2({key, oldKey, value, pV}, `${oldKey}[${key}]`, `[${key}]`)
       return pV
     },
     {}
@@ -53,21 +57,35 @@ function commonMap({key, oldKey, value, pV}){
   }
   return pV
 }
-// function mergeArray(resultsObject, pV){
-//   console.log('tralalalalalallaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', {resultsObject, pV}, 'merge', ecma2018ArrMerge(resultsObject, pV))
-// }
 
 function reduceObject (obj, oldKey) { // previous Value, currentValue, currentIndex
   let newKeysAndValues = Object.keys(obj).reduce( (pV, cV, cI) =>
     {
       let key = cV
       let value = obj[cV]
-      pV =  updatePv(pV, { key, value }, objKeyCallback, oldKey );
+      pV = commonMap2({key, oldKey, value, pV}, `${oldKey}.${key}`, `.${key}`)
       return pV
     },
     { }
   );
   return newKeysAndValues
+}
+function commonMap2({key, oldKey, value, pV}, currFullKey, currKey){
+  if (typeof value === 'object') {
+    resultsObject = handleNested(value, currFullKey)
+    pV = ecma2018ArrMerge(resultsObject, pV)
+    // pV = mergeObjects(pV, resultsObject)
+  } else if(typeof value === 'undefined') { }
+  else {
+      pV = updatePv2(pV, { key, value }, currKey, oldKey );
+  }
+  return pV
+}
+function updatePv2(pV, {key, value}, currKey, oldKey) {
+  pV[`${oldKey}${currKey}`] = value
+  // pV.keys.push(oldKey + keyCallback(key)) // intentionally insert '.' for string flattening keys.
+  // pV.values.push(value)
+  return pV // *********  Important ******
 }
 
 // spec pV =  { keys:[], values:[] }
@@ -102,5 +120,5 @@ console.log('outputs')
 console.log('reduce obj:', reduceObject(obj, 'obj'))
 console.log('reduce obj:', handleNested(obj, 'obj'))
 console.log()
-console.log('reduce arr:', reduceArray(arr, 'arr'))
-console.log('reduce arr:', handleNested(arr, 'arr'))
+// console.log('reduce arr:', reduceArray(arr, 'arr'))
+// console.log('reduce arr:', handleNested(arr, 'arr'))
