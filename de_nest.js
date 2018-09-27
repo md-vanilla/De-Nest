@@ -66,15 +66,22 @@ const ecma2018ArrMerge = (resultsObject, pV) => {
 }
 
 // Output interface.
-console.log('inputs')
-console.log({obj})
-console.log({arr})
-
-console.log()
-console.log('outputs')
-
-console.log('reduce obj:', reduceObject(obj, 'obj'))
-console.log('reduce obj:', handleNested(obj, 'obj'))
-console.log()
-console.log('reduce arr:', reduceArray(arr, 'arr'))
-console.log('reduce arr:', handleNested(arr, 'arr'))
+// console.log('inputs')
+// console.log({obj})
+// console.log({arr})
+//
+// console.log()
+// console.log('outputs')
+//
+// console.log('reduce obj:', reduceObject(obj, 'obj'))
+// console.log('reduce obj:', handleNested(obj, 'obj'))
+// console.log()
+// console.log('reduce arr:', reduceArray(arr, 'arr'))
+// console.log('reduce arr:', handleNested(arr, 'arr'))
+// module.exports = { handleNested }
+// module.exports = oldKeyBuildArray
+module.exports = { handleNested,oldKeyBuildArray,
+  arrKeyCallback,oldKeyBuildObject,
+  objKeyCallback,reduceArray,reduceObject,
+  commonReduceLogic,updatePv,ecma2018ArrMerge
+}
