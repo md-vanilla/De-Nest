@@ -24,7 +24,7 @@ function handleNested(val, oldKey){
 //  }
 //  return pV;
 // }
-function oldKeyArray({oldKey, key}){
+function oldKeyBuildArray({oldKey, key}){
   return `${oldKey}[${key}]`
 }
 
@@ -33,14 +33,7 @@ function reduceArray (arr, oldKey) { // previous Value, currentValue, currentInd
     {
       let key = cI
       let value = cV
-      if (typeof value === 'object') {
-        resultsObject = handleNested(value, `${oldKey}[${key}]`)
-        pV = ecma2018ArrMerge(resultsObject, pV)
-        // pV = mergeObjects(pV, resultsObject)
-      } else if(typeof value === 'undefined') { }
-      else {
-          pV = updatePv(pV, { key, value }, arrKeyCallback, oldKey );
-      }
+      pV = commonMap({key, oldKey, value, pV})
       return pV
     },
     {}
@@ -48,6 +41,17 @@ function reduceArray (arr, oldKey) { // previous Value, currentValue, currentInd
   // newKeysAndValue{ keys:[value], values:[3] }
   // oldKeysAndValue{ keys:[a, b, c], values:[7, 2, {}] }
   return newKeysAndValues
+}
+function commonMap({key, oldKey, value, pV}){
+  if (typeof value === 'object') {
+    resultsObject = handleNested(value, `${oldKey}[${key}]`)
+    pV = ecma2018ArrMerge(resultsObject, pV)
+    // pV = mergeObjects(pV, resultsObject)
+  } else if(typeof value === 'undefined') { }
+  else {
+      pV = updatePv(pV, { key, value }, arrKeyCallback, oldKey );
+  }
+  return pV
 }
 // function mergeArray(resultsObject, pV){
 //   console.log('tralalalalalallaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', {resultsObject, pV}, 'merge', ecma2018ArrMerge(resultsObject, pV))
