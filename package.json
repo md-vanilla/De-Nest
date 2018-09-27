@@ -1,0 +1,27 @@
+{
+  "name": "flatten-nested",
+  "version": "0.1.0",
+  "description": "nest with objects; nest with arrays; deeply nest; we dont care! 😘 ",
+  "main": "flattenAnything.js",
+  "scripts": {
+    "example": "echo ;echo '*********tutorials started************'; for d in ./tutorialsForOthers/* ; do (echo && echo `$d` && node $d); done;echo ; echo '************  flattenAnything Started ***********'; node flattenAnything.js;",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelDimmitt/De-Nest.git"
+  },
+  "keywords": [
+    "flat",
+    "flatten",
+    "json",
+    "nested",
+    "array"
+  ],
+  "author": "michael dimmitt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MichaelDimmitt/De-Nest/issues"
+  },
+  "homepage": "https://github.com/MichaelDimmitt/De-Nest#readme"
+}
