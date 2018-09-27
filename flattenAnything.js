@@ -18,7 +18,7 @@ const arrKeyCallback    = (key)           => `[${key}]`
 const oldKeyBuildObject = ({oldKey, key}) => `${oldKey}.${key}`
 const objKeyCallback    = (key)           => `.${key}`
 
-function reduceArray (arr, oldKey) { // previous Value, currentValue, currentIndex
+const reduceArray = (arr, oldKey) => { // previous Value, currentValue, currentIndex
   let newKeysAndValues = arr.reduce( (pV, cV, cI) =>
     {
       let key = cI; let value = cV;
@@ -29,7 +29,7 @@ function reduceArray (arr, oldKey) { // previous Value, currentValue, currentInd
   return newKeysAndValues
 }
 
-function reduceObject (obj, oldKey) { // previous Value, currentValue, currentIndex
+const reduceObject = (obj, oldKey) => { // previous Value, currentValue, currentIndex
   let newKeysAndValues = Object.keys(obj).reduce( (pV, cV, cI) =>
     {
       let key = cV; let value = obj[cV]
@@ -40,7 +40,7 @@ function reduceObject (obj, oldKey) { // previous Value, currentValue, currentIn
   return newKeysAndValues
 }
 
-function commonReduceLogic({key, oldKey, value, pV}, currFullKey, currKey){
+const commonReduceLogic = ({key, oldKey, value, pV}, currFullKey, currKey) => {
   if (typeof value === 'object') {
     resultsObject = handleNested(value, currFullKey)
     pV = ecma2018ArrMerge(resultsObject, pV)
@@ -52,7 +52,7 @@ function commonReduceLogic({key, oldKey, value, pV}, currFullKey, currKey){
   return pV
 }
 
-function updatePv(pV, {key, value}, currKey, oldKey) {
+const updatePv = (pV, {key, value}, currKey, oldKey) => {
   pV[`${oldKey}${currKey}`] = value
   return pV // *********  Important ******
   // old implementation:
@@ -60,7 +60,7 @@ function updatePv(pV, {key, value}, currKey, oldKey) {
   // pV.values.push(value)
 }
 
-function ecma2018ArrMerge(resultsObject, pV){
+const ecma2018ArrMerge = (resultsObject, pV) => {
   // for alternatives check, https://stackoverflow.com/a/171256
   return {...pV, ...resultsObject}
 }
