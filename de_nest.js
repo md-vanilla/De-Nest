@@ -19,6 +19,7 @@ const oldKeyBuildObject = ({oldKey, key}) => `${oldKey}.${key}`
 const objKeyCallback    = (key)           => `.${key}`
 
 const reduceArray = (arr, oldKey) => { // previous Value, currentValue, currentIndex
+  if(Array.isArray(arr)){
   let newKeysAndValues = arr.reduce( (pV, cV, cI) =>
     {
       let key = cI; let value = cV;
@@ -26,7 +27,11 @@ const reduceArray = (arr, oldKey) => { // previous Value, currentValue, currentI
     },
     {} // {keys:[],values:[]}
   );
-  return newKeysAndValues
+    return newKeysAndValues
+  }
+  //  console.log(`what did you do 😱 , ill fix it`)
+  //  return handleNested(arr, oldKey)
+  return 'this is not an array...'
 }
 
 const reduceObject = (obj, oldKey) => { // previous Value, currentValue, currentIndex
@@ -76,10 +81,9 @@ const ecma2018ArrMerge = (resultsObject, pV) => {
 // console.log('reduce obj:', reduceObject(obj, 'obj'))
 // console.log('reduce obj:', handleNested(obj, 'obj'))
 // console.log()
-// console.log('reduce arr:', reduceArray(arr, 'arr'))
+console.log('reduce arr:', reduceArray(obj, 'obj'))
 // console.log('reduce arr:', handleNested(arr, 'arr'))
-// module.exports = { handleNested }
-// module.exports = oldKeyBuildArray
+
 module.exports = { handleNested,oldKeyBuildArray,
   arrKeyCallback,oldKeyBuildObject,
   objKeyCallback,reduceArray,reduceObject,
