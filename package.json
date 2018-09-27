@@ -5,7 +5,7 @@
   "main": "flattenAnything.js",
   "scripts": {
     "example": "echo ;echo '*********tutorials started************'; for d in ./tutorialsForOthers/* ; do (echo && echo `$d` && node $d); done;echo ; echo '************  flattenAnything Started ***********'; node de_nest.js;",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require babel-core/register"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/MichaelDimmitt/De-Nest/issues"
   },
-  "homepage": "https://github.com/MichaelDimmitt/De-Nest#readme"
+  "homepage": "https://github.com/MichaelDimmitt/De-Nest#readme",
+  "dependencies": {
+    "mocha": "^5.2.0"
+  }
 }
