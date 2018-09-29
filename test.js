@@ -1,7 +1,7 @@
 const assert = require('assert')
 const { describe, it } = require('mocha');
 const { handleNested,oldKeyBuildArray,arrKeyCallback,oldKeyBuildObject,objKeyCallback,
-  reduceArray,reduceObject,commonReduceLogic,updatePv,ecma2018ArrMerge } = require('./de_nest.js')
+  reduceArray,reduceObject,commonReduceLogic,updatePv,ecma2015ArrMerge } = require('./de_nest.js')
 
 
 // console.log('reduce arr:', JSON.stringify(handleNested(arr, 'arr')))
@@ -60,7 +60,7 @@ describe('de-nest is working properly for', () => {
     const mergeObj2 = { c: 7, d: 2 };
 
     it('two objects together', () => {
-      assert.equal(JSON.stringify(ecma2018ArrMerge(mergeObj1, mergeObj2)), '{"c":{"value":3},"d":2,"a":7,"b":2}');
+      assert.equal(JSON.stringify(ecma2015ArrMerge(mergeObj1, mergeObj2)), '{"c":{"value":3},"d":2,"a":7,"b":2}');
     })
   })
 })

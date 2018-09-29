@@ -48,7 +48,7 @@ const reduceObject = (obj, oldKey) => { // previous Value, currentValue, current
 const commonReduceLogic = ({key, oldKey, value, pV}, currFullKey, currKey) => {
   if (typeof value === 'object') {
     resultsObject = handleNested(value, currFullKey)
-    pV = ecma2018ArrMerge(resultsObject, pV)
+    pV = ecma2015ArrMerge(resultsObject, pV)
     // pV = mergeObjects(pV, resultsObject)
   } else if(typeof value === 'undefined') { }
   else {
@@ -65,9 +65,12 @@ const updatePv = (pV, {key, value}, currKey, oldKey) => {
   // pV.values.push(value)
 }
 
-const ecma2018ArrMerge = (resultsObject, pV) => {
+const ecma2015ArrMerge = (resultsObject, pV) => {
   // for alternatives check, https://stackoverflow.com/a/171256
-  return {...pV, ...resultsObject}
+  return Object.assign(pV, resultsObject);
+  // ecma2015ArrMerge
+  // pV = {...pV, ...resultsObject}
+  // return pV
 }
 
 // Output interface.
@@ -87,5 +90,5 @@ console.log('reduce arr:', reduceArray(obj, 'obj'))
 module.exports = { handleNested,oldKeyBuildArray,
   arrKeyCallback,oldKeyBuildObject,
   objKeyCallback,reduceArray,reduceObject,
-  commonReduceLogic,updatePv,ecma2018ArrMerge
+  commonReduceLogic,updatePv,ecma2015ArrMerge
 }
