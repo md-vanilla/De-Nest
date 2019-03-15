@@ -12,6 +12,7 @@ key values that are nested need to be key1.key2.
 git clone https://github.com/MichaelDimmitt/De-Nest.git
 cd De-Nest
 npm test
+node runner
 
 ## Sorry <User> just here for a good tutorial
 no problem!
