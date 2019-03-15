@@ -26,15 +26,15 @@ describe('de-nest is working properly for', () => {
     })
 
     it('reduce array method should give array syntax top level with either as it nests deeper', () => {
-      assert.equal(JSON.stringify(reduceArray({arr})),'{"arr[0]":7,"arr[2].value2":4,"arr[3]":1,"arr[4]":2,"arr[5]":3,"arr[6]":4}' );
+      assert.equal(JSON.stringify(reduceArray(['arr', arr])),'{"arr[0]":7,"arr[2].value2":4,"arr[3]":1,"arr[4]":2,"arr[5]":3,"arr[6]":4}' );
     })
 
-    it('reduce array method should not give object syntax top level', () => {
-      assert.notEqual(JSON.stringify(reduceArray({obj})),'{"obj.a":7,"obj.b":2,"obj.c.value":3}' );
+    it('reduce a array method should not give object syntax top level', () => {
+      assert.notEqual(JSON.stringify(reduceArray(['obj', obj])),'{"obj.a":7,"obj.b":2,"obj.c.value":3}' );
     })
 
-    it('reduce array method should not give object syntax top level', () => {
-      assert.equal(JSON.stringify(reduceArray({obj})),'"what did you do 😱 , ill fix it. this is not an array..."' );
+    it('reduce b array method should not give object syntax top level', () => {
+      assert.equal(JSON.stringify(reduceArray(['obj', obj])),'"what did you do 😱 , ill fix it. this is not an array..."' );
     })
   })
   describe('#object', () => {
@@ -47,11 +47,11 @@ describe('de-nest is working properly for', () => {
     })
 
     it('reduce object method should give object syntax top level', () => {
-      assert.equal(JSON.stringify(reduceObject({obj})),'{"obj.a":7,"obj.b":2,"obj.c.value":3}' );
+      assert.equal(JSON.stringify(reduceObject(['obj', obj])),'{"obj.a":7,"obj.b":2,"obj.c.value":3}' );
     })
 
     it('reduce object method should not give array syntax top level', () => {
-      assert.notEqual(JSON.stringify(reduceObject({arr})),'{"arr[0]":7,"arr[2].value2":4,"arr[3]":1,"arr[4]":2,"arr[5]":3,"arr[6]":4}' );
+      assert.notEqual(JSON.stringify(reduceObject(['arr', arr])),'{"arr[0]":7,"arr[2].value2":4,"arr[3]":1,"arr[4]":2,"arr[5]":3,"arr[6]":4}' );
     })
   })
   describe('#merge', () => {
