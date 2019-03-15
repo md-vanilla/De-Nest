@@ -8,6 +8,11 @@ just print out all the values. format the stuff do the things.
 key values that are nested need to be key1.key2.
 <br>... hint, use a recursive function.</br>
 
+## Setup
+git clone https://github.com/MichaelDimmitt/De-Nest.git
+cd De-Nest
+npm test
+
 ## Sorry <User> just here for a good tutorial
 no problem!
 
