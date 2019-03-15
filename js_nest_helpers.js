@@ -1,4 +1,12 @@
 const { handleNested } = require('./de_nest.js')
+
+
+const varInfo = (obj) => {
+  const oldKey = Object.keys(obj)
+  const val = obj[oldKey[0]]
+  return [ oldKey, val ]
+}
+
 const updatePv = (pV, {key, value}, currKey, oldKey) => {
   pV[`${oldKey}${currKey}`] = value
   return pV
@@ -15,6 +23,7 @@ const ecma2015ArrMerge = (resultsObject, pV) => {
 }
 
 module.exports = {
+  varInfo,
   updatePv,
   ecma2015ArrMerge
 }

@@ -1,11 +1,5 @@
-   const { oldKeyBuildArray, arrKeyCallback, oldKeyBuildObject, objKeyCallback } = require('./js_nest_helpers.js')
-   const { updatePv, ecma2015ArrMerge } = require('./common_reduce_logic.js')
+   const { varInfo, updatePv, ecma2015ArrMerge } = require('./js_nest_helpers.js')
 
-  const varInfo = (obj) => {
-    const oldKey = Object.keys(obj)
-    const val = obj[oldKey[0]]
-    return [ oldKey, val ]
-  }
   const handleNested = (obj) => {
     const [ oldKey, val ] = varInfo(obj)
     return Array.isArray(val)

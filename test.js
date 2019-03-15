@@ -1,8 +1,7 @@
 const assert = require('assert')
 const { describe, it } = require('mocha');
 const { handleNested,reduceArray,reduceObject, commonReduceLogic } = require('./de_nest.js')
-const { oldKeyBuildArray, arrKeyCallback, oldKeyBuildObject, objKeyCallback } = require('./js_nest_helpers.js')
-const { updatePv, ecma2015ArrMerge } = require('./common_reduce_logic.js')
+const { varInfo, updatePv, ecma2015ArrMerge } = require('./js_nest_helpers.js')
 
 // console.log('reduce arr:', JSON.stringify(handleNested({arr})))
 // reduce arr: {"arr[0]":7,"arr[2].value2":4,"arr[3]":1,"arr[4]":2,"arr[5]":3,"arr[6]":4}
