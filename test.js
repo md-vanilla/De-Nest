@@ -34,7 +34,7 @@ describe('de-nest is working properly for', () => {
     })
 
     it('reduce array method should not give object syntax top level', () => {
-      assert.equal(JSON.stringify(reduceArray(obj, 'obj')),'"this is not an array..."' );
+      assert.equal(JSON.stringify(reduceArray(obj, 'obj')),'"what did you do 😱 , ill fix it. this is not an array..."' );
     })
   })
   describe('#object', () => {

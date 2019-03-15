@@ -1,8 +1,3 @@
-// Variable Declerations
-var arr = [7, undefined,  {value: undefined, value2: 4}, 1, 2, 3, 4];
-
-var obj = { a: 7, b: 2, c: {value:3} };
-
 function handleNested(val, oldKey){
   return Array.isArray(val)
     ? reduceArray(val, oldKey)
@@ -25,13 +20,11 @@ const reduceArray = (arr, oldKey) => { // previous Value, currentValue, currentI
       let key = cI; let value = cV;
       return commonReduceLogic({key, oldKey, value, pV}, `${oldKey}[${key}]`, `[${key}]`)
     },
-    {} // {keys:[],values:[]}
+    {}
   );
     return newKeysAndValues
   }
-  //  console.log(`what did you do 😱 , ill fix it`)
-  //  return handleNested(arr, oldKey)
-  return 'this is not an array...'
+  return 'what did you do 😱 , ill fix it. this is not an array...'
 }
 
 const reduceObject = (obj, oldKey) => { // previous Value, currentValue, currentIndex
@@ -40,7 +33,7 @@ const reduceObject = (obj, oldKey) => { // previous Value, currentValue, current
       let key = cV; let value = obj[cV]
       return commonReduceLogic({key, oldKey, value, pV}, `${oldKey}.${key}`, `.${key}`)
     },
-    {} // {keys:[],values:[]}
+    {}
   );
   return newKeysAndValues
 }
@@ -49,7 +42,6 @@ const commonReduceLogic = ({key, oldKey, value, pV}, currFullKey, currKey) => {
   if (typeof value === 'object') {
     resultsObject = handleNested(value, currFullKey)
     pV = ecma2015ArrMerge(resultsObject, pV)
-    // pV = mergeObjects(pV, resultsObject)
   } else if(typeof value === 'undefined') { }
   else {
     pV = updatePv(pV, { key, value }, currKey, oldKey );
@@ -59,36 +51,28 @@ const commonReduceLogic = ({key, oldKey, value, pV}, currFullKey, currKey) => {
 
 const updatePv = (pV, {key, value}, currKey, oldKey) => {
   pV[`${oldKey}${currKey}`] = value
-  return pV // *********  Important ******
-  // old implementation:
-  // pV.keys.push(oldKey + keyCallback(key)) // intentionally insert '.' for string flattening keys.
-  // pV.values.push(value)
+  return pV 
 }
 
 const ecma2015ArrMerge = (resultsObject, pV) => {
-  // for alternatives check, https://stackoverflow.com/a/171256
+  
+  // ecma2015ObjectMerge
   return Object.assign(pV, resultsObject);
-  // ecma2015ArrMerge
-  // pV = {...pV, ...resultsObject}
-  // return pV
+  
+  // ecma2017 object merge ... this was removed because the test suite did not support 2017
+  // return {...pV, ...resultsObject}
+  
 }
 
-// Output interface.
-// console.log('inputs')
-// console.log({obj})
-// console.log({arr})
-//
-// console.log()
-// console.log('outputs')
-//
-// console.log('reduce obj:', reduceObject(obj, 'obj'))
-// console.log('reduce obj:', handleNested(obj, 'obj'))
-// console.log()
-console.log('reduce arr:', reduceArray(obj, 'obj'))
-// console.log('reduce arr:', handleNested(arr, 'arr'))
-
-module.exports = { handleNested,oldKeyBuildArray,
-  arrKeyCallback,oldKeyBuildObject,
-  objKeyCallback,reduceArray,reduceObject,
-  commonReduceLogic,updatePv,ecma2015ArrMerge
+module.exports = {
+  handleNested,
+  oldKeyBuildArray,
+  arrKeyCallback,
+  oldKeyBuildObject,
+  objKeyCallback,
+  reduceArray,
+  reduceObject,
+  commonReduceLogic,
+  updatePv,
+  ecma2015ArrMerge
 }
