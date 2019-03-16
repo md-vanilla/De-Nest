@@ -3,8 +3,6 @@ const { describe, it } = require('mocha');
 const { handleNested,reduceArray,reduceObject, commonReduceLogic } = require('./de_nest.js')
 const { varInfo, updatePv, ecma2015ArrMerge } = require('./js_nest_helpers.js')
 
-// console.log('reduce arr:', JSON.stringify(handleNested({arr})))
-// reduce arr: {"arr[0]":7,"arr[2].value2":4,"arr[3]":1,"arr[4]":2,"arr[5]":3,"arr[6]":4}
 const obj = { a: 7, b: 2, c: {value:3} };
 describe('sanity', () => {
   it('sanity', () => {
@@ -63,9 +61,3 @@ describe('de-nest is working properly for', () => {
     })
   })
 })
-
-// console.log('reduce obj:', reduceObject({obj}))
-// console.log('reduce obj:', handleNested({obj}))
-// console.log()
-// console.log('reduce arr:', reduceArray({arr}))
-// console.log('reduce arr:', handleNested({arr}))
