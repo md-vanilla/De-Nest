@@ -1,4 +1,9 @@
-const { varInfo, updatePv, ecma2015ArrMerge } = require('./js_nest_helpers.js')
+const { varInfo, updatePv, ecma2015ArrMerge, convertObjectToArrays } = require('./js_nest_helpers.js')
+
+const flattenAnything = (obj) => {
+  const result = handleNested(obj);
+  return convertObjectToArrays(result);
+}
 
 const handleNested = (obj) => {
   const [oldKey, val] = varInfo(obj)
@@ -41,6 +46,7 @@ const commonReduceLogic = ({ key, oldKey, value, previousValue }, currFullKey, c
 }
 
 module.exports = {
+  flattenAnything,
   handleNested,
   reduceArray,
   reduceObject,
